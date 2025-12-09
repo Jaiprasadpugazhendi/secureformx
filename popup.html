@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecureFormX</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SecureFormX</h1>
+      <button id="lockBtn" class="icon-btn" hidden title="Lock Vault">🔒</button>
+    </header>
+
+    <div id="status" class="status"></div>
+
+    <!-- Login View -->
+    <div id="view-login" class="view">
+      <p class="subtitle">Enter Master Password</p>
+      <div class="input-group">
+        <input type="password" id="masterPassword" placeholder="Password" />
+      </div>
+      <button id="unlockBtn" class="btn-primary">Unlock</button>
+      <div class="divider">or</div>
+      <button id="setupBtn" class="btn-secondary">Setup New Vault</button>
+    </div>
+
+    <!-- Main View -->
+    <div id="view-main" class="view" hidden>
+      <div class="profile-selector">
+        <label>Select Profile</label>
+        <select id="profileSelect"></select>
+      </div>
+      
+      <div class="actions">
+        <button id="fillBtn" class="btn-primary large">
+          <span class="icon">✨</span> Autofill Form
+        </button>
+      </div>
+
+      <div class="footer-links">
+        <button id="optionsBtn" class="btn-text">Manage Profiles & Options</button>
+      </div>
+    </div>
+
+    <!-- Setup View (basic fallback if no options page needed immediately, but usually redirect to options) -->
+    <div id="view-setup" class="view" hidden>
+       <p>No vault found. Please go to Options to set up your master password.</p>
+       <button id="goToOptionsBtn" class="btn-primary">Open Options</button>
+    </div>
+  </div>
+
+  <script src="../src/utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

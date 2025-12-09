@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SecureFormX Dashboard</title>
+    <link rel="stylesheet" href="../popup/popup.css"> <!-- Reuse styles -->
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="brand">
+                <h1>SecureFormX</h1>
+                <span class="badge">Dashboard</span>
+            </div>
+            <div>
+                <button id="lockBtn" class="btn-secondary" hidden>Lock Vault</button>
+            </div>
+        </header>
+
+        <main>
+            <div id="status" class="status"></div>
+
+            <!-- Login / Setup View -->
+            <section id="auth-section" class="centered-card">
+                <h2 id="authTitle">Unlock Vault</h2>
+                <div class="input-group">
+                    <label>Master Password</label>
+                    <input type="password" id="masterPassword" />
+                </div>
+                <div class="actions">
+                    <button id="authBtn" class="btn-primary">Unlock</button>
+                </div>
+                <p class="hint" id="authHint">Enter your password to manage profiles.</p>
+
+                <div id="setup-hint" hidden>
+                    <p>This is your first time. Create a strong Master Password. It cannot be recovered!</p>
+                </div>
+            </section>
+
+            <!-- Dashboard View -->
+            <section id="dashboard" hidden>
+                <div class="dashboard-grid">
+                    <!-- Profile List -->
+                    <div class="card profile-list-card">
+                        <div class="card-header">
+                            <h3>Your Profiles</h3>
+                            <button id="addProfileBtn" class="btn-primary small">+ Add</button>
+                        </div>
+                        <div id="profilesContainer" class="list-container">
+                            <!-- Profiles injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Editor (Side or Modal, let's do side column) -->
+                    <div class="card editor-card" id="editor" hidden>
+                        <div class="card-header">
+                            <h3 id="editorTitle">New Profile</h3>
+                            <button id="cancelEditBtn" class="btn-text">Cancel</button>
+                        </div>
+                        <form id="profileForm">
+                            <input type="hidden" id="p_id">
+
+                            <div class="form-row">
+                                <label>Profile Name</label>
+                                <input type="text" id="p_name" placeholder="e.g. Personal" required>
+                            </div>
+
+                            <h4>Identity</h4>
+                            <div class="form-row dates">
+                                <input type="text" id="p_fullname" placeholder="Full Name">
+                            </div>
+
+                            <h4>Contact</h4>
+                            <div class="form-row">
+                                <input type="email" id="p_email" placeholder="Email Address">
+                                <input type="tel" id="p_phone" placeholder="Phone Number">
+                            </div>
+
+                            <h4>Address</h4>
+                            <div class="form-row">
+                                <input type="text" id="p_address" placeholder="Street Address">
+                            </div>
+                            <div class="form-row">
+                                <input type="text" id="p_city" placeholder="City">
+                                <input type="text" id="p_zip" placeholder="Zip Code">
+                            </div>
+                            <div class="form-row">
+                                <input type="text" id="p_country" placeholder="Country">
+                            </div>
+
+                            <div class="actions right">
+                                <button type="submit" class="btn-primary">Save Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="danger-zone">
+                    <h3>Danger Zone</h3>
+                    <button id="wipeBtn" class="btn-danger">Secure Wipe All Data</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../src/utils.js"></script>
+    <script src="../src/profileManager.js"></script>
+    <script src="options.js"></script>
+</body>
+
+</html>

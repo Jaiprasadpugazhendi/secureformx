@@ -1,0 +1,44 @@
+{
+    "manifest_version": 3,
+    "name": "SecureFormX",
+    "version": "1.0.0",
+    "description": "Secure, encrypted autofill for forms using local profiles.",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_title": "SecureFormX"
+    },
+    "options_page": "options/options.html",
+    "background": {
+        "service_worker": "src/background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/utils.js",
+                "src/form-mapper.js",
+                "src/content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "src/crypto.js",
+                "src/form-mapper.js",
+                "src/utils.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
